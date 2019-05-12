@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Library</string>
+    <string name="multiselect_popwindow_cancel">Cancel</string>
+    <string name="multiselect_popwindow_title">Selection</string>
+    <string name="multiselect_popwindow_confirm">Confirm</string>
+    <string name="multiselect_popwindow_select_all">Select All</string>
 </resources>

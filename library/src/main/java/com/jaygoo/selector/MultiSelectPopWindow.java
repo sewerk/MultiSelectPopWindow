@@ -45,6 +45,7 @@ public class MultiSelectPopWindow {
         private String title;
         private String confirmText;
         private String cancelText;
+        private String selectAllText;
         private boolean isOutsideTouchable;
         private View.OnClickListener mOnCancelListener;
         private OnConfirmClickListener mOnConfirmListener;
@@ -87,6 +88,16 @@ public class MultiSelectPopWindow {
          */
         public Builder setCancel(String str){
             this.cancelText = str;
+            return this;
+        }
+
+        /**
+         * set select all button text
+         * @param str
+         * @return
+         */
+        public Builder setSelectAll(String str){
+            this.selectAllText = str;
             return this;
         }
 
@@ -249,21 +260,22 @@ public class MultiSelectPopWindow {
     }
 
     private void initViews(View root) {
-        titleTV = (TextView) root.findViewById(R.id.title);
-        cancelBtn = (TextView) root.findViewById(R.id.cancelBtn);
-        confirmBtn = (TextView) root.findViewById(R.id.confirmBtn);
-        selectedNumberTV = (TextView) root.findViewById(R.id.selectedNumber);
-        selectAllBtn = (CheckBox) root.findViewById(R.id.selectAllBtn);
+        titleTV = root.findViewById(R.id.title);
+        cancelBtn = root.findViewById(R.id.cancelBtn);
+        confirmBtn = root.findViewById(R.id.confirmBtn);
+        selectedNumberTV = root.findViewById(R.id.selectedNumber);
+        selectAllBtn = root.findViewById(R.id.selectAllBtn);
 
         setText(titleTV,mBuilder.title);
         setText(cancelBtn,mBuilder.cancelText);
         setText(confirmBtn,mBuilder.confirmText);
+        setText(selectAllBtn,mBuilder.selectAllText);
 
         setTextColor(titleTV,mBuilder.mTitleTextColor);
         setTextColor(cancelBtn,mBuilder.mCancelTextColor);
         setTextColor(confirmBtn,mBuilder.mConfirmTextColor);
 
-        RecyclerView recyclerView = (RecyclerView) mPopupWindow.getContentView().findViewById(R.id.mRecycleView);
+        RecyclerView recyclerView = mPopupWindow.getContentView().findViewById(R.id.mRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(mBuilder.mActivity.getApplication()));
         adapter = new MultiSelectListAdapter(mBuilder.choiceNameList);
         recyclerView.setAdapter(adapter);

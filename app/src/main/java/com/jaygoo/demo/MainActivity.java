@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplication(), indexList.size()+"", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .setCancel("取消")
-                        .setConfirm("完成")
-                        .setTitle("班级列表")
+                        .setCancel("Anuluj")
+                        .setConfirm("Ok")
+                        .setTitle("Wybór")
+                        .setSelectAll("wszystkie")
                         .build()
                         .show(findViewById(R.id.mBottom));
             }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_gravity="bottom"
               android:background="@android:color/white"
@@ -22,7 +21,7 @@
         android:layout_height="50dp">
         <TextView
             android:id="@+id/cancelBtn"
-            android:text="取消"
+            android:text="@string/multiselect_popwindow_cancel"
             android:textSize="16sp"
             android:textColor="#289fff"
             android:layout_centerVertical="true"
@@ -35,7 +34,7 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/title"
-                android:text="班级列表"
+                android:text="@string/multiselect_popwindow_title"
                 android:textSize="18sp"
                 android:textColor="#333333"
                 android:layout_centerVertical="true"
@@ -57,7 +56,7 @@
         </RelativeLayout>
         <TextView
             android:id="@+id/confirmBtn"
-            android:text="完成"
+            android:text="@string/multiselect_popwindow_confirm"
             android:textSize="16sp"
             android:textColor="#289fff"
             android:layout_centerVertical="true"
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"/>
         <CheckBox
             android:id="@+id/selectAllBtn"
-            android:text="全选"
+            android:text="@string/multiselect_popwindow_select_all"
             android:textSize="16sp"
             android:textColor="@drawable/select_all_textcolor_selector"
             android:layout_centerVertical="true"
