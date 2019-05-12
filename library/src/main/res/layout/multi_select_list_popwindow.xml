@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_gravity="bottom"
-              android:background="@android:color/white"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_gravity="bottom"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
     <View
@@ -27,33 +28,27 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <RelativeLayout
-            android:id="@+id/titleLayout"
-            android:layout_width="90dp"
+        <TextView
+            android:id="@+id/title"
+            android:text="@string/multiselect_popwindow_title"
+            android:textSize="18sp"
+            android:textColor="#333333"
             android:layout_centerInParent="true"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/title"
-                android:text="@string/multiselect_popwindow_title"
-                android:textSize="18sp"
-                android:textColor="#333333"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/selectedNumber"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:background="@drawable/circle_bg"
-                android:textSize="10sp"
-                android:visibility="gone"
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="4dp"
-                android:layout_alignParentTop="true"/>
-        </RelativeLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/selectedNumber"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:background="@drawable/circle_bg"
+            android:textSize="10sp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_toRightOf="@id/title"
+            android:layout_marginTop="4dp"
+            android:layout_alignParentTop="true"/>
         <TextView
             android:id="@+id/confirmBtn"
             android:text="@string/multiselect_popwindow_confirm"
