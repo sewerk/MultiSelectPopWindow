@@ -184,7 +184,6 @@ public class MultiSelectPopWindow {
         initViews(mPopupWindow.getContentView());
 
         initListener();
-
     }
 
     /**
