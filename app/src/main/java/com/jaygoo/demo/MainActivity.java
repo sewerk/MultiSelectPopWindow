@@ -11,27 +11,23 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> names = new ArrayList<>(7);
+    private boolean[] selection = new boolean[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initData();
+
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                names.add("高三5班");
-                names.add("高三1班");
-                names.add("高二5班");
-                names.add("初中1790班");
-                names.add("240101班");
-                names.add("清华大学速成班");
-                names.add("帅哥速成班");
-                names.add("程序员速成0341班");
-                names.add("扯蛋0班");
 
                 new MultiSelectPopWindow.Builder(MainActivity.this)
                         .setNameArray(names)
+                        .setSelection(selection)
                         .setConfirmListener(new MultiSelectPopWindow.OnConfirmClickListener() {
                             @Override
                             public void onClick(ArrayList<Integer> indexList, ArrayList<String> selectedList) {
@@ -47,5 +43,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initData() {
+        names.add("Monday");
+        names.add("Tuesday");
+        names.add("Wednesday");
+        names.add("Thursday");
+        names.add("Friday");
+        names.add("Saturday");
+        names.add("Sunday");
+        selection[1] = true;
     }
 }

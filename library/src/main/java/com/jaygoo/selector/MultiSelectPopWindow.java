@@ -13,6 +13,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * ================================================
@@ -42,6 +43,7 @@ public class MultiSelectPopWindow {
     static public class Builder{
         private Activity mActivity;
         private ArrayList<String> choiceNameList = new ArrayList<>();
+        private boolean[] selectStates = new boolean[0];
         private String title;
         private String confirmText;
         private String cancelText;
@@ -56,8 +58,15 @@ public class MultiSelectPopWindow {
         public Builder(Activity mActivity){
             this.mActivity = mActivity;
         }
+
         public Builder setNameArray(ArrayList<String> list){
             this.choiceNameList = list;
+            this.selectStates = new boolean[choiceNameList.size()];
+            return this;
+        }
+
+        public Builder setSelection(boolean[] selection) {
+            this.selectStates = selection;
             return this;
         }
 
@@ -257,6 +266,7 @@ public class MultiSelectPopWindow {
                 selectAllBtn.setChecked(isSelectedAll);
             }
         });
+        adapter.refreshSelectedIndicators();
     }
 
     private void initViews(View root) {
@@ -277,10 +287,9 @@ public class MultiSelectPopWindow {
 
         RecyclerView recyclerView = mPopupWindow.getContentView().findViewById(R.id.mRecycleView);
         recyclerView.setLayoutManager(new LinearLayoutManager(mBuilder.mActivity.getApplication()));
-        adapter = new MultiSelectListAdapter(mBuilder.choiceNameList);
+
+        adapter = new MultiSelectListAdapter(mBuilder.choiceNameList, mBuilder.selectStates);
         recyclerView.setAdapter(adapter);
-
-
     }
 
     private void setText(TextView tv, String str){

@@ -21,8 +21,8 @@ import java.util.Arrays;
  */
 public class MultiSelectListAdapter extends MultiChoiceAdapter<MultiSelectListAdapter.ChoiceViewHolder> {
 
-    private ArrayList<String> choiceNames = new ArrayList<>();
-    private Boolean[] selectStates;
+    private ArrayList<String> choiceNames;
+    private boolean[] selectStates;
     private OnSelectChangeListener mOnSelectChangeListener;
     private OnSelectAllListener mOnSelectAllListener;
 
@@ -40,14 +40,14 @@ public class MultiSelectListAdapter extends MultiChoiceAdapter<MultiSelectListAd
         void onChanged(boolean isSelectedAll);
     }
 
-    public MultiSelectListAdapter(ArrayList<String> list){
-        choiceNames = list;
-
-        //init the select state array
-        if (choiceNames != null && choiceNames.size() >0) {
-            selectStates = new Boolean[choiceNames.size()];
-            Arrays.fill(selectStates,false);
+    MultiSelectListAdapter(ArrayList<String> list, boolean[] selected){
+        if (list == null || selected == null) {
+            throw new IllegalArgumentException("Args should not be null: " + list + " or " + selected);
+        } else if (list.size() != selected.length) {
+            throw new IllegalArgumentException("Args should equal in size: " + list.size() + "!=" + selected.length);
         }
+        choiceNames = list;
+        selectStates = selected;
     }
 
     @Override
@@ -67,18 +67,7 @@ public class MultiSelectListAdapter extends MultiChoiceAdapter<MultiSelectListAd
                 selectStates[position] = !selectStates[position];
                 holder.choiceNameBtn.setSelected(selectStates[position]);
 
-                if (mOnSelectChangeListener != null){
-                    mOnSelectChangeListener.onChanged(getSelectedPosition(),getSelectedNumber());
-                }
-
-                if (mOnSelectAllListener != null){
-                    int num = getSelectedNumber();
-                    if (num == choiceNames.size() && choiceNames.size() >0){
-                        mOnSelectAllListener.onChanged(true);
-                    } else {
-                        mOnSelectAllListener.onChanged(false);
-                    }
-                }
+                refreshSelectedIndicators();
             }
         });
     }
@@ -96,18 +85,7 @@ public class MultiSelectListAdapter extends MultiChoiceAdapter<MultiSelectListAd
             public void onClick(View v) {
                 selectStates[position] = !selectStates[position];
                 holder.choiceNameBtn.setSelected(selectStates[position]);
-                if (mOnSelectChangeListener != null){
-                    mOnSelectChangeListener.onChanged(getSelectedPosition(),getSelectedNumber());
-                }
-
-                if (mOnSelectAllListener != null){
-                    int num = getSelectedNumber();
-                    if (num == choiceNames.size() && choiceNames.size() >0){
-                        mOnSelectAllListener.onChanged(true);
-                    } else {
-                        mOnSelectAllListener.onChanged(false);
-                    }
-                }
+                refreshSelectedIndicators();
             }
         };
     }
@@ -163,6 +141,21 @@ public class MultiSelectListAdapter extends MultiChoiceAdapter<MultiSelectListAd
             notifyDataSetChanged();
             if (mOnSelectChangeListener != null){
                 mOnSelectChangeListener.onChanged(getSelectedPosition(),getSelectedNumber());
+            }
+        }
+    }
+
+    public void refreshSelectedIndicators() {
+        if (mOnSelectChangeListener != null) {
+            mOnSelectChangeListener.onChanged(getSelectedPosition(), getSelectedNumber());
+        }
+
+        if (mOnSelectAllListener != null){
+            int num = getSelectedNumber();
+            if (num == choiceNames.size() && choiceNames.size() >0){
+                mOnSelectAllListener.onChanged(true);
+            } else {
+                mOnSelectAllListener.onChanged(false);
             }
         }
     }
