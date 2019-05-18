@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                         .setCancel("Anuluj")
                         .setConfirm("Ok")
                         .setTitle("Wybór")
-                        .setSelectAll("wszystkie")
+                        .setSelectAll("Zaznacz wszystkie")
                         .build()
                         .show(findViewById(R.id.mBottom));
             }

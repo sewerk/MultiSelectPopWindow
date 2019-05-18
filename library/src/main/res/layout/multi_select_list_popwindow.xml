@@ -1,83 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="bottom"
     android:background="@android:color/white"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
 
 
     <View
-        android:background="#dedede"
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dedede"
         android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:layout_height="1dp"/>
+        android:paddingRight="22dp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
         <TextView
             android:id="@+id/cancelBtn"
-            android:text="@string/multiselect_popwindow_cancel"
-            android:textSize="16sp"
-            android:textColor="#289fff"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/multiselect_popwindow_cancel"
+            android:textColor="#289fff"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/title"
-            android:text="@string/multiselect_popwindow_title"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/multiselect_popwindow_title"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/selectedNumber"
             android:layout_width="17dp"
             android:layout_height="17dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/title"
             android:background="@drawable/circle_bg"
-            android:textSize="10sp"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:layout_toRightOf="@id/title"
-            android:layout_marginTop="4dp"
-            android:layout_alignParentTop="true"/>
+            android:textSize="10sp" />
+
         <TextView
             android:id="@+id/confirmBtn"
-            android:text="@string/multiselect_popwindow_confirm"
-            android:textSize="16sp"
-            android:textColor="#289fff"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/multiselect_popwindow_confirm"
+            android:textColor="#289fff"
+            android:textSize="16sp" />
+
         <CheckBox
             android:id="@+id/selectAllBtn"
-            android:text="@string/multiselect_popwindow_select_all"
-            android:textSize="16sp"
-            android:textColor="@drawable/select_all_textcolor_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/confirmBtn"
+            android:layout_toRightOf="@+id/title"
+            android:ellipsize="end"
             android:background="@null"
             android:button="@null"
-            android:layout_toLeftOf="@+id/confirmBtn"
-            android:layout_marginRight="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/multiselect_popwindow_select_all"
+            android:textColor="@drawable/select_all_textcolor_selector"
+            android:textSize="16sp"
+            tools:text="Very long select all" />
     </RelativeLayout>
+
     <View
-        android:background="#dedede"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:background="#dedede" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRecycleView"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
         android:layout_width="match_parent"
-        android:layout_height="240dp"/>
+        android:layout_height="240dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp" />
 </LinearLayout>
